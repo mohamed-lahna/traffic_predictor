@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "traffic-predictor"
+version = "0.1.0"
+description = "traffic prediction"
+authors = ["mohamed-lahna <mohamed.lahna@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pandas = "^2.2.3"
+pydantic = "^2.10.3"
+mlflow = "^2.19.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.8.3"
+mypy = "^1.13.0"
+pytest = "^8.3.4"
+pre-commit = "^4.0.1"
+matplotlib = "^3.10.0"
+statsmodels = "^0.14.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
