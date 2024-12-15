@@ -21,6 +21,35 @@ matplotlib = "^3.10.0"
 statsmodels = "^0.14.4"
 ipykernel = "^6.29.5"
 
+[tool.ruff] 
+# automatic fix when possible
+fix = true 
+# define the default indent width
+indent-width = 4 
+# define the default line length 
+line-length = 100 
+# define the default python version 
+target-version = "py313" 
+
+[tool.ruff.lint.per-file-ignores] 
+# exceptions for docstrings in tests 
+"tests/*.py" = ["D100", "D103"]
+
+[tool.mypy]
+# improve error messages
+pretty = true
+# enhance strictness level
+strict = true
+# specify the python version
+python_version = "3.12"
+# check untyped definitions
+check_untyped_defs = true
+# all missing imports in code
+ignore_missing_imports = true
+# enable additional mypy plugins
+plugins = ["pandera.mypy", "pydantic.mypy"]
+
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
