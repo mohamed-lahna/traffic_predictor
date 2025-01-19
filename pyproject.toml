@@ -6,11 +6,12 @@ authors = ["mohamed-lahna <mohamed.lahna@outlook.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.12"
 pandas = "^2.2.3"
 pydantic = "^2.10.3"
 mlflow = "^2.19.0"
-scikit-learn = "^1.6.0"
+scikit-learn = ">=1.0.1,<1.6.0"
+darts = "^0.32.0"
 
 
 [tool.poetry.group.dev.dependencies]
