@@ -1,9 +1,12 @@
 [tool.poetry]
-name = "traffic-predictor"
+name = "traffic_predictor"
 version = "0.1.0"
-description = "traffic prediction"
+description = "toll traffic prediction"
 authors = ["mohamed-lahna <mohamed.lahna@outlook.com>"]
 readme = "README.md"
+packages = [
+    { include = "traffic_predictor", from = "src" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -13,29 +16,32 @@ mlflow = "^2.19.0"
 scikit-learn = ">=1.0.1,<1.6.0"
 darts = "^0.32.0"
 
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.8.3"
 mypy = "^1.13.0"
-pytest = "^8.3.4"
 pre-commit = "^4.0.1"
 matplotlib = "^3.10.0"
 statsmodels = "^0.14.4"
 ipykernel = "^6.29.5"
 ipywidgets = "^8.1.5"
 
-[tool.ruff] 
+[tool.ruff]
 # automatic fix when possible
-fix = true 
+fix = true
 # define the default indent width
-indent-width = 4 
-# define the default line length 
-line-length = 100 
-# define the default python version 
-target-version = "py313" 
+indent-width = 4
+# define the default line length
+line-length = 100
+# define the default python version
+target-version = "py313"
 
-[tool.ruff.lint.per-file-ignores] 
-# exceptions for docstrings in tests 
+[tool.ruff.lint.per-file-ignores]
+# exceptions for docstrings in tests
 "tests/*.py" = ["D100", "D103"]
 
 [tool.mypy]
@@ -51,6 +57,19 @@ check_untyped_defs = true
 ignore_missing_imports = true
 # enable additional mypy plugins
 plugins = ["pandera.mypy", "pydantic.mypy"]
+
+[tool.coverage.run]
+branch = true  # report coverage by branch (if)
+source = ["src"]  # set the default source folder
+omit = ["__main__.py"]  # exclude certain files from coverage report
+
+[tool.coverage.report]
+fail_under = 80  # Minimum coverage threshold
+show_missing = true  # Show lines that are missing coverage
+
+[tool.pytest.ini_options]
+addopts = ["-vv","--cov"]  # increase the verbosity level & automatically generate coverage report
+pythonpath = ["src"]  # set the default python path
 
 
 [build-system]
