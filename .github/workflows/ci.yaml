@@ -32,8 +32,8 @@ jobs:
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: |
-          poetry install --with test --without dev
+          poetry install --no-root --only main --only test
 
       - name: Run tests # pytest config in pyproject.toml
         run: |
-          pytest
+          poetry run pytest
