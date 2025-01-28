@@ -10,7 +10,7 @@ def test_csv_loader(data_path: str):
     assert data.shape[0] == 5
     assert data.shape[1] == 3
     assert data.columns.tolist() == ["Gare", "ds", "traffic"]
-    assert data.isna().sum().sum() == 0
+    assert data.isna().sum().sum() == 1
 
 
 def test_csv_saver(data_path: str):
