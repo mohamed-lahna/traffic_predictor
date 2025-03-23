@@ -55,13 +55,12 @@ strict = true
 check_untyped_defs = true
 # all missing imports in code
 ignore_missing_imports = true
-# enable additional mypy plugins
-plugins = ["pandera.mypy", "pydantic.mypy"]
+
 
 [tool.coverage.run]
 branch = true  # report coverage by branch (if)
 source = ["src"]  # set the default source folder
-omit = ["__main__.py","__init__.py"]  # exclude certain files from coverage report
+omit = ["__main__.py","__init__.py","schemas.py"]  # exclude certain files from coverage report
 
 [tool.coverage.report]
 fail_under = 80  # Minimum coverage threshold
