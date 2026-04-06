@@ -11,29 +11,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up python
         id: setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.14'
 
-      - name: Install Poetry # Poetry virtualenvs config in poetry.toml
-        uses: snok/install-poetry@v1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
 
       - name: Load cached venv
-        id: cached-poetry-dependencies
+        id: cached-uv-dependencies
         uses: actions/cache@v4
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/uv.lock') }}
 
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        if: steps.cached-uv-dependencies.outputs.cache-hit != 'true'
         run: |
-          poetry install --no-root --only main --only test
+          uv sync --group test
 
       - name: Run tests # pytest config in pyproject.toml
         run: |
-          poetry run pytest
+          uv run pytest
